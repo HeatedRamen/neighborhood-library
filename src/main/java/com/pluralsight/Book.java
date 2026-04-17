@@ -16,6 +16,13 @@ public class Book {
         this.isCheckedOut = false;
         this.checkedOutTo = "";
     }
+    Book(int id, String isbn, String title){
+        this.id = id;
+        this.isbn = isbn;
+        this.title = title;
+        this.isCheckedOut = false;
+        this.checkedOutTo = "";
+    }
 
     // Getters and Setters for the variables
     public int getID(){return this.id;}
@@ -33,6 +40,7 @@ public class Book {
     public String getCheckedOutTo(){return this.checkedOutTo;}
     public void setCheckedOutTo(String checkedOutTo){this.checkedOutTo = checkedOutTo;}
 
+    //Book check out / check out function
     public void checkOut(String name){
         this.checkedOutTo = name;
         this.isCheckedOut = true;
