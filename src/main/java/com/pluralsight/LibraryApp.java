@@ -100,12 +100,13 @@ public class LibraryApp {
                 (x)         Back to home""");
     }
     static void checkOutBook(){
-        println("Enter the title of the book to check out");
-        String bookName = input.nextLine();
+        println("Enter the ID of the book to check out");
+        int bookID = input.nextInt();
+        input.nextLine();
         boolean bookFound = false;
 
         for (Book book : bookCollection){
-            if (bookName.equalsIgnoreCase(book.getTitle())){
+            if (bookID == book.getID()){
                 println("What is your name?");
                 book.checkOut(input.nextLine());
                 bookFound = true;
@@ -130,13 +131,13 @@ public class LibraryApp {
                 (x)         Back to home""");
     }
     static void checkInBook(){
-        println("Enter the title of the book to check out");
-        String bookName = input.nextLine();
+        println("Enter the ID of the book to check out");
+        int bookID = input.nextInt();
+        input.nextLine();
         boolean bookFound = false;
 
         for (Book book : bookCollection){
-            if (bookName.equalsIgnoreCase(book.getTitle())){
-                println("What is your name?");
+            if (bookID == book.getID()){
                 book.checkIn();
                 bookFound = true;
                 break;
@@ -146,7 +147,5 @@ public class LibraryApp {
             println("Book with that title was not found");
         }
     }
-
-
     static void println(String message){System.out.println(message);}
 }
