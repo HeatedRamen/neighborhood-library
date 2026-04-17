@@ -23,6 +23,19 @@ public class LibraryApp {
         bookCollection[5] = new Book(6, "73", "Curse Throater");
         bookCollection[6] = new Book(7, "74", "Bush Camper");
         bookCollection[7] = new Book(8, "75", "Potential Man");
+        bookCollection[8] = new Book(9, "76" , "Electric Waffle");
+        bookCollection[9] = new Book(10, "77" , "Retrial Lawyer");
+        bookCollection[10] = new Book(11, "78" , "Bubble Pop Electric");
+        bookCollection[11] = new Book(12, "79" , "Nah I'd Adapt");
+        bookCollection[12] = new Book(13, "80" , "Ghost of the Zenin Clan");
+        bookCollection[13] = new Book(14, "81" , "The Problem Child");
+        bookCollection[14] = new Book(15, "82" , "Panda...");
+        bookCollection[15] = new Book(16, "83" , "Salmon Roe Tuna Mayo");
+        bookCollection[16] = new Book(17, "84" , "BROTHEEEER");
+        bookCollection[17] = new Book(18, "85" , "Funniest Comedian");
+        bookCollection[18] = new Book(19, "86" , "Shiesty Warrior");
+        bookCollection[19] = new Book(20, "87" , "Besto Friendo");
+
 
         // Loop through menu until user decides to exit
         while(isRunning){
