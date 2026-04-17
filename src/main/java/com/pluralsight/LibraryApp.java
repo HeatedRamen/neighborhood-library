@@ -3,6 +3,8 @@ package com.pluralsight;
 import java.util.Scanner;
 
 public class LibraryApp {
+
+    // Make global input and book class
     private static Scanner input = new Scanner(System.in);
     private static Book[] bookCollection = new Book[20];
 
@@ -12,6 +14,7 @@ public class LibraryApp {
         boolean inMenu = true;
         String userChoice;
 
+        // Initializing books with some values
         bookCollection[0] = new Book(1, "67", "Blue Judas");
         bookCollection[1] = new Book(2, "68", "Red Judas");
         bookCollection[2] = new Book(3, "69", "Jumping Guy");
@@ -21,17 +24,21 @@ public class LibraryApp {
         bookCollection[6] = new Book(7, "74", "Bush Camper");
         bookCollection[7] = new Book(8, "75", "Potential Man");
 
+        // Loop through menu until user decides to exit
         while(isRunning){
             displayHome();
             userChoice = input.nextLine();
 
+        // Switch case based off user choice and display appropriate based off option
             switch(userChoice){
+                // Display all checked in books and prompts user to check out a book or return to home
                 case "1":
                     displayAvailable();
                     inMenu = true;
                     checkOutMenu();
                     userChoice = (input.nextLine()).toLowerCase();
 
+                    // Loop through inner menu until user chooses the right option and returns to home menu when finished
                     while (inMenu){
                         switch (userChoice) {
                             case "c":
@@ -47,12 +54,15 @@ public class LibraryApp {
                         }
                     }
                     break;
+
+                // Display all checked out books and prompt user to check in a book or return home
                 case "2":
                     displayCheckedOut();
                     inMenu = true;
                     checkInMenu();
                     userChoice = input.nextLine().toLowerCase();
 
+                    // Loop through inner menu until user chooses the right option and returns to home menu when finished
                     while (inMenu){
                         switch (userChoice) {
                             case "c":
@@ -68,15 +78,21 @@ public class LibraryApp {
                         }
                     }
                     break;
+
+                // Exits the library home menu
                 case "3":
                     isRunning = false;
                     break;
+
+                // Case when user enters an invalid input
                 default:
                     println("Please enter a valid option");
             }
         }
     }
     static void displayHome() {
+
+        // Not so good-looking home menu print statement
         println("""
                 ----------------------------------------------------
                 |                                                   |
@@ -88,36 +104,46 @@ public class LibraryApp {
                 -----------------------------------------------------""");
     }
     static void displayAvailable(){
+
+        // Loops through array of book and checks if not null and checked in (not checked out) and outputs
+        // title, id, isbn
         for (Book book : bookCollection){
             if(book != null && !book.getIsCheckedOut())
                 System.out.printf("Book Title: %s, Book ID: %d, Book ISBN: %s\n", book.getTitle(), book.getID(), book.getISBN());
         }
     }
     static void checkOutMenu(){
+
+        // Even worse-looking checkout display menu print statements
         println("""
                 
                 (c) Do you want to check out a book?
                 (x)         Back to home""");
     }
     static void checkOutBook(){
+        // Prompt user for the id of the book they want to check out and stores it
         println("Enter the ID of the book to check out");
         int bookID = input.nextInt();
         input.nextLine();
         boolean bookFound = false;
 
+        // Loops through array of books to look for matching ID and make sure that book is already not checked out
         for (Book book : bookCollection){
-            if (bookID == book.getID()){
+            if (bookID == book.getID() && !book.getIsCheckedOut()){
                 println("What is your name?");
                 book.checkOut(input.nextLine());
                 bookFound = true;
                 break;
             }
         }
+        // If book wasn't found / matched, let the user know and return back to home
         if (!bookFound){
-            println("Book with that title was not found");
+            println("Book with that ID was not found");
         }
     }
     static void displayCheckedOut(){
+
+        // Loops through array of book and checks if not null and checked out and output title, id, isbn
         for (Book book : bookCollection){
             if (book != null && book.getIsCheckedOut()){
                 System.out.printf("Book Title: %s, Book ID: %d, Book ISBN: %s\n", book.getTitle(), book.getID(), book.getISBN());
@@ -125,27 +151,34 @@ public class LibraryApp {
         }
     }
     static void checkInMenu(){
+
+        // Even horrible-looking checkin display menu print statements
         println("""
                 
                 (c) Do you want to check in a book?
                 (x)         Back to home""");
     }
     static void checkInBook(){
+
+        // Prompt user for the id of the book they want to check in and store
         println("Enter the ID of the book to check out");
         int bookID = input.nextInt();
         input.nextLine();
         boolean bookFound = false;
 
+        // Loops through array of books to look for matching ID and make sure that book is actually checked out
         for (Book book : bookCollection){
-            if (bookID == book.getID()){
+            if (bookID == book.getID() && book.getIsCheckedOut()){
                 book.checkIn();
                 bookFound = true;
                 break;
             }
         }
+        // If book wasn't found / matched, let the user know and return back to home
         if (!bookFound){
-            println("Book with that title was not found");
+            println("Book with that ID was not found");
         }
     }
+    // Shortcut println statement
     static void println(String message){System.out.println(message);}
 }
